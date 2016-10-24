@@ -1,10 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    chronic (0.10.2)
     httpclient (2.7.1)
     mini_portile2 (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -12,6 +15,7 @@ PLATFORMS
 DEPENDENCIES
   httpclient
   nokogiri
+  whenever
 
 BUNDLED WITH
    1.10.6
