@@ -15,9 +15,13 @@ class Contributer
     end
     yield(self) if block_given?
 
+    raise(ArgumentError, '"github_user_name" is not set.') unless @github_user_name
+    raise(ArgumentError, '"slack_web_hook_url" is not set.') unless @slack_web_hook_url
+
     @post_user_name = 'GitHubContributer' unless @post_user_name
     @post_icon_emoji = ':warning:' unless @icon_emoji
     @post_text = 'WARNING!! Nothing contributing today!!'
+    @force = false
   end
 
   def exec(time)
@@ -30,8 +34,12 @@ class Contributer
 
     rects = doc.css('rect')
 
-    target = rects.find{|x| x.attr('data-date') == time.to_date.to_s}
+    target = rects.find { |x| x.attr('data-date') == time.to_date.to_s }
 
+    if target.nil?
+      raise(RuntimeError, 'target is not found.')
+    end
+    
     if target.attr('data-count').to_i <= 0 || @force
       payload = {
         username: @post_user_name,
