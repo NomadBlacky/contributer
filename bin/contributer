@@ -11,5 +11,4 @@ yaml = YAML.load_file(File.dirname(__FILE__) + '/../config/config.yaml')
 Contributer.new do |config|
   config.github_user_name = yaml['github_user_name']
   config.slack_web_hook_url = yaml['slack_web_hook_url']
-  config.force = true
 end.exec(Time.now)
