@@ -1,6 +1,0 @@
-github_user_name: 'YourName'
-slack_web_hook_url: 'https://hooks.slack.com/services/...'
-# channel: "@your_name"
-# post_user_name: 'hoge'
-# post_icon_emoji: ':warning:'
-# post_text: 'WARNING!! Nothing contributing today!!'
