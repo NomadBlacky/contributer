@@ -1,5 +1,10 @@
 # coding: utf-8
 
+desc 'Setup Contributer.'
+task :setup do
+  sh 'bundle install --without development'
+end
+
 desc 'Execute Contributer.'
 task :run_contributer do
   sh 'bundle exec bin/contributer'

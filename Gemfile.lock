@@ -1,14 +1,43 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (9.0.6)
     chronic (0.10.2)
+    coderay (1.1.1)
+    diff-lcs (1.2.5)
     httpclient (2.7.1)
+    method_source (0.8.2)
     mini_portile2 (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-doc (0.9.0)
+      pry (~> 0.9)
+      yard (~> 0.8)
     rake (10.4.2)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    slop (3.6.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    yard (0.9.5)
 
 PLATFORMS
   ruby
@@ -16,7 +45,11 @@ PLATFORMS
 DEPENDENCIES
   httpclient
   nokogiri
+  pry
+  pry-byebug
+  pry-doc
   rake
+  rspec
   whenever
 
 BUNDLED WITH
