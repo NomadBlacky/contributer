@@ -19,6 +19,7 @@ def write_file(path, append = false)
   end
 end
 
+LOG_DIR_NAME = 'log'
 CONFIG_DIR_NAME = 'config'
 CONTRIBUTER_CONFIG_FILE_NAME = 'config.yaml'
 WHENEVER_CONFIG_FILE_NAME = 'schedule.rb'
@@ -37,9 +38,21 @@ WHENEVER_CONFIG_TEMPLATE = <<-EOS
 
 # Contributer example.
 
+env :PATH, ENV['PATH']
+set :output, {:standard => "#{LOG_DIR_NAME}/cron.log", :error => "#{LOG_DIR_NAME}/cron_error.log"}
+
 #every '0 18,21,23 * * *' do
 #  rake 'run_contributer'
 #end
+
+# If using rbenv.
+
+# job_type :rbenv_rake, %q!"$(rbenv init -)"; cd :path && :environment_variable=:environment bundle exec rake :task --silent :output!
+#
+#every '0 18,21,23 * * *' do
+#  rbenv_rake 'run_contributer'
+#end
+
 EOS
 
 Config = Struct.new(:github_user_name, :slack_web_hook_url)
@@ -48,6 +61,8 @@ desc 'Setup Contributer.'
 task :setup do
   sh 'bundle install --without development'
   puts ''
+
+  Dir.mkdir(LOG_DIR_NAME) unless FileTest.directory?(LOG_DIR_NAME)
 
   config = Config.new(*Config.members.reduce([]) { |ary, m| ary << input_loop(m.to_s) })
 
