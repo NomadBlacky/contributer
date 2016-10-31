@@ -10,18 +10,20 @@ class Contributer
   attr_accessor :github_user_name, :slack_web_hook_url, :channel, :post_user_name, :post_icon_emoji, :force
   
   def initialize(options = {})
-    options.each do |key, value|
+    default_opt = {
+      post_user_name: 'GitHubContributer',
+      post_icon_emoji: ':warning:',
+      post_text: 'WARNING!! Nothing contributing today!!',
+      force: false,
+    }
+    
+    default_opt.merge(options).each do |key, value|
       instance_variable_set("@#{key}", value)
     end
     yield(self) if block_given?
 
     raise(ArgumentError, '"github_user_name" is not set.') unless @github_user_name
     raise(ArgumentError, '"slack_web_hook_url" is not set.') unless @slack_web_hook_url
-
-    @post_user_name = 'GitHubContributer' unless @post_user_name
-    @post_icon_emoji = ':warning:' unless @icon_emoji
-    @post_text = 'WARNING!! Nothing contributing today!!'
-    @force = false
   end
 
   def exec(time)

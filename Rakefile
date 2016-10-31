@@ -52,7 +52,6 @@ set :output, {:standard => "#{LOG_DIR_NAME}/cron.log", :error => "#{LOG_DIR_NAME
 #every '0 18,21,23 * * *' do
 #  rbenv_rake 'run_contributer'
 #end
-
 EOS
 
 Config = Struct.new(:github_user_name, :slack_web_hook_url)
