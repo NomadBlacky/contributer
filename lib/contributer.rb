@@ -13,7 +13,7 @@ class Contributer
     default_opt = {
       post_user_name: 'GitHubContributer',
       post_icon_emoji: ':warning:',
-      post_text: 'WARNING!! Nothing contributing today!!',
+      post_text: %q{WARNING!! You have not contributed anything today!},
       force: false,
     }
     
